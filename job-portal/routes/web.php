@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\loginandreg;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::post('login-user',[loginandreg::class,'loginuser'])->name('login-user');
 Route::get('logout',[loginandreg::class,'logout'])->name('logout');
 
 
-    Route::get('login',[loginandreg::class,'login'])->middleware('alreadyloggedin');
-Route::get('registration',[loginandreg::class,'registration'])->middleware('alreadyloggedin');
-    Route::get('/home',[loginandreg::class,'index'])->middleware('isAdmin');
+
+Route:: group(['middleware'=>['isAdmin']],function(){
+    Route::get('login',[loginandreg::class,'login']);
+    Route::get('registration',[loginandreg::class,'registration']);
+    Route::get('/home',[loginandreg::class,'index']);
+});

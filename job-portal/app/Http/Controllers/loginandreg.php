@@ -31,7 +31,7 @@ class loginandreg extends Controller
        $user -> email = $request -> input ('email');
        $user -> password = Hash::make ($request ->input ('password'));
        $res = $user->save();
-       if($res){
+       if($request){
           return back()->with('success','You have registered successfully');
        }else{
           return back()->with('fail','Something wrong');
@@ -50,7 +50,7 @@ class loginandreg extends Controller
        if($user){
           if(Hash::check($request->password, $user->password)){
              $request ->session()->put('loginId',$user->id);
-             return redirect('backend.profile.profile');
+             return view('backend.home');
           }else{
              return back()->with('fail','password does not match');
           }
@@ -60,7 +60,7 @@ class loginandreg extends Controller
     }
     public function index()
     {
-       return view('backend\profile\profile.blade.php');
+       return view('backend.home');
     }
     public function logout()
     {
