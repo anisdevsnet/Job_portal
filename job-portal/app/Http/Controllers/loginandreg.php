@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,8 +21,8 @@ class loginandreg extends Controller
     }
     public function registeruser(Request $request)
     {
- 
-         
+
+
        $input = request() -> validate([
           'name'=>'required',
           'email'=>'required',
@@ -30,7 +32,16 @@ class loginandreg extends Controller
        $user -> name = $request -> input ('name');
        $user -> email = $request -> input ('email');
        $user -> password = Hash::make ($request ->input ('password'));
-       $res = $user->save();
+       $request= $user->save();
+
+       $profile = Profile::create([
+         'user_id'=>$user->id,
+         
+         
+       ]);
+         //dd($profile->all());
+       $profile->save();
+
        if($request){
           return back()->with('success','You have registered successfully');
        }else{
@@ -50,7 +61,7 @@ class loginandreg extends Controller
        if($user){
           if(Hash::check($request->password, $user->password)){
              $request ->session()->put('loginId',$user->id);
-             return view('backend.home');
+             return view('Profile.profile');
           }else{
              return back()->with('fail','password does not match');
           }
@@ -60,7 +71,7 @@ class loginandreg extends Controller
     }
     public function index()
     {
-       return view('backend.home');
+       return view('Profile.profile');
     }
     public function logout()
     {

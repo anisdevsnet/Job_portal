@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{ asset('style')}}/img/logo/logo.png" rel="icon">
-  <title>BaseManagement - Register</title>
+  <title>Job-Portal - Register</title>
   <link href="{{ asset('style')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="{{ asset('style')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="{{ asset('style')}}/css/ruang-admin.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                        class="form-control" 
                        id="exampleInputFirstName" 
                        name="name"
-                       placeholder="Enter First Name"
+                       placeholder="Enter  Name"
                         value="{{old('name')}}"/>
                       <span class="text-danger">
                         @error('name'){{ $message }}

@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\loginandreg;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +18,42 @@ use App\Http\Middleware\AdminMiddleware;
 */
 
 Route::get('/', function () {
-    return view('backend.auth.login');
+    return view('login');
 });
 
-Route::post('register-user',[loginandreg::class,'registeruser'])->name('register-user');
+/*Route::post('register-user',[loginandreg::class,'registeruser'])->name('register-user');
 Route::post('login-user',[loginandreg::class,'loginuser'])->name('login-user');
 
-Route::get('logout',[loginandreg::class,'logout'])->name('logout');
+Route::get('login',[loginandreg::class,'login']);
+Route::get('registration',[loginandreg::class,'registration']);
 
+Route::group(['middleware'=>['disable_back_btn']],function(){
 
+   Route:: group(['middleware'=>['isAdmin']],function(){
 
-Route:: group(['middleware'=>['isAdmin']],function(){
-    Route::get('login',[loginandreg::class,'login']);
-    Route::get('registration',[loginandreg::class,'registration']);
-    Route::get('/home',[loginandreg::class,'index']);
+    
+    Route::get('/home',[loginandreg::class,'index']);   
+
 });
+});
+
+Route::get('logout',[loginandreg::class,'logout'])->name('logout');*/
+ 
+
+
+Route::get('profile',[ProfileController::class,'index']);
+Route::post('profile/store',[ProfileController::class,'store'])->name('profile.store');
+Route::post('profile/coverletter',[ProfileController::class,'coverletter'])->name('profile.coverletter');
+Route::post('profile/resume',[ProfileController::class,'resume'])->name('profile.resume');
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{ asset('style')}}/img/logo/logo.png" rel="icon">
-  <title>Base-Management</title>
+  <title>Job-Portal</title>
   <link href="{{ asset('style')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="{{ asset('style')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="{{ asset('style')}}/css/ruang-admin.min.css" rel="stylesheet">
