@@ -18,10 +18,10 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
-
-/*Route::post('register-user',[loginandreg::class,'registeruser'])->name('register-user');
+/*
+Route::post('register-user',[loginandreg::class,'registeruser'])->name('register-user');
 Route::post('login-user',[loginandreg::class,'loginuser'])->name('login-user');
 
 Route::get('login',[loginandreg::class,'login']);
@@ -45,6 +45,7 @@ Route::get('profile',[ProfileController::class,'index']);
 Route::post('profile/store',[ProfileController::class,'store'])->name('profile.store');
 Route::post('profile/coverletter',[ProfileController::class,'coverletter'])->name('profile.coverletter');
 Route::post('profile/resume',[ProfileController::class,'resume'])->name('profile.resume');
+Route::post('profile/avatar',[ProfileController::class,'avatar'])->name('profile.avatar');
 
 
 

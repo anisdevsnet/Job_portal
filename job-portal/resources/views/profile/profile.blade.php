@@ -11,8 +11,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('dropify') }}/dropify/css/style.css ">
- <link rel="stylesheet" href="{{ asset('dropify')}}/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
+    
+ <link rel="stylesheet" href="{{ asset('dropify/dropify/css/dropify.min.css')}}">
   </head>
   <body>
     <div class="container" >
@@ -37,58 +38,52 @@
       </nav>
       <div class="row" style="margin-top: 50px" >
         <div class="col-md-4" style="border-radius: 50px">
-        <form action="" enctype="multipart/form-data" >
-          <div class="card">
-            <img src="" alt="" id="selectedImage"  />
-            <div class="card-body">
-              <!-- Button trigger modal -->
-              <button
-                type="submit"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Change Your Photo
-              </button>
-              
+         @if (empty(Auth::user()->profile->avatar))
+
+          <p>Please Upload Your Photo</p>
+
+          @else
+            <img style="width: 100%" src="{{ asset('uploads/image') }}/{{ Auth::user()->profile->avatar }}" alt="" width="100" height="300">
+        
+         @endif
+         
+          
+            <div class="card">
+              <div class="card-header">Chnage Your Avatar</div>
+              <div class="card-body">
+                {{--  <input type="file" name="avatar" class="form-control" />
+                <br />--}}
+                <button type="submit" value="Save" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Your Photo</button>
+              </div>
             </div>
-          </div>
-        </form>
+          
+          
         </div>
       
         <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  Choose your photo
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                
-                <input type="file" id="file" name="file" class="dropify form-control" onchange="changeImage(this)" />
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="ImageUpdate">Update</button>
-               {{--   <p class="text-success mt-2 success_message float right">Successfully Uploaded</p>
-                <p class="text-danger mt-2 error_message float right">Try Again</p>--}}
-              </div>
+       <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose Your Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+            <div class="modal-body">
+              <input type="file" name="avatar" id="dropify" data-height="100"/>
             </div>
-          </div>
-        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" value="save" class="btn btn-primary">Update</button>
+            </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+        
         
         <div class="col-md-4" id="with">
           <div class="card">
@@ -101,6 +96,7 @@
                         <div class="form-group">
                         <label for="" style="margin-bottom: 5px">Date of birth</label>
                         <input type="date" name="dob" class="form-control" />
+                        
                       </div>
                       <br />
 
@@ -164,7 +160,7 @@
                       </div>
                       
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 15px">
+                        <button type="submit" class="btn btn-primary" value="Save" style="margin-top: 15px">
                           Update
                         </button>
                       </div>
@@ -184,13 +180,33 @@
             <div class="card-body">
               <p><b>Name:</b>{{ Auth::user()?->name }}</p>
               <p><b>Email:</b>{{ Auth::user()?->email}}</p>
-              <p><b>Date of Birth:</b>{{--  {{ Auth::user()?->profile->dob }}--}}</p>
-              <p><b>Gender:</b>{{--{{ Auth::user()?->profile->gender }}--}}</p>
-              <p><b>Address:</b>{{--{{ Auth::user()?->profile->address }}--}}</p>
-              <p><b>Phone Number:</b>{{--{{ Auth::user()?->profile->phone_number }}--}}</p>
-              <p><b>Objective:</b>{{--{{ Auth::user()?->profile->objective }}--}}</p>
-              <p><b>Experience:</b>{{--{{ Auth::user()?->profile->experience }}--}}</p>
-              <p><b>Bio:</b>{{--{{ Auth::user()?->profile->bio }}--}}</p>
+              <p><b>Date of Birth:</b>{{ Auth::user()?->profile->dob }}</p>
+              <p><b>Gender:</b>{{ Auth::user()?->profile->gender }}</p>
+              <p><b>Address:</b>{{ Auth::user()?->profile->address }}</p>
+              <p><b>Phone Number:</b>{{ Auth::user()?->profile->phone_number }}</p>
+              <p><b>Objective:</b>{{ Auth::user()?->profile->objective }}</p>
+              <p><b>Experience:</b>{{ Auth::user()?->profile->experience }}</p>
+              <p><b>Bio:</b>{{ Auth::user()?->profile->bio }}</p>
+              <p><b>Member Since:</b>{{ Auth::user()?->profile->created_at->diffForHumans() }}</p>
+              @if(!empty(Auth::user()->profile->cover_letter))
+                <p>
+                  <a href="{{ Storage::url(Auth::user()->profile->cover_letter) }}">
+                  Cover Letter
+                  </a>
+                </p>
+              @else
+              <p>Please Upload your Cover Letter</p>
+              @endif
+
+              @if(!empty(Auth::user()->profile->resume))
+                <p>
+                  <a href="{{ Storage::url(Auth::user()->profile->resume) }}">
+                  Resume
+                  </a>
+                </p>
+              @else
+                <p>Please Upload your Resume</p>
+              @endif
             </div>  
           </div>
           <br />
@@ -201,19 +217,20 @@
             <div class="card-body">
               <input type="file" name="cover_letter" class="form-control" />
               <br />
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" value="Save" class="btn btn-primary">Update</button>
             </div>
           </div>
         </form >
           <br />
 
         <form action="{{ route('profile.resume') }}" method="POST" enctype="multipart/form-data">
+          @csrf
           <div class="card">
             <div class="card-header">Update your Resume</div>
             <div class="card-body">
               <input type="file" name="resume" class="form-control" />
               <br />
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" value="Save" class="btn btn-primary">Update</button>
             </div>
           </div>
         </form>
@@ -221,7 +238,7 @@
       </div>
     </div>
     
-    <script type="text/javascript">
+    {{--  <script type="text/javascript">
       //start of messages
       //$(".success_message").hide();
      /// $(".error_message").hide();
@@ -249,15 +266,16 @@
             })
           }
         }))
-      })
-
-      //Start Dropify
+      })--}}
+<script>
+    //  Start Dropify
       $(document).ready(function(){
-        $('.dropify').dropify();
+        $('#dropify').dropify();
       });
-      //end of Dopifys
+     // end of Dopifys
+</script>
 
-      function changeImage(input){
+       {{-- function changeImage(input){
         if(input.files && input.files[0]){
           var reader = new FileReader();
           reader.onload = function(e){
@@ -266,14 +284,17 @@
           reader.readAsDataURL(input.files[0]);
         }
       }
-    </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-     <script src="dropify/js/dopify.min.js"></script>
+    </script>--}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+     
+     <script src="dropify/dropify/js/dopify.min.js"></script>
+    
+
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
   
   </body>
 </html>

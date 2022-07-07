@@ -32,15 +32,15 @@ class loginandreg extends Controller
        $user -> name = $request -> input ('name');
        $user -> email = $request -> input ('email');
        $user -> password = Hash::make ($request ->input ('password'));
-       $request= $user->save();
+       $user->save();
 
-       $profile = Profile::create([
+       Profile::create([
          'user_id'=>$user->id,
          
          
        ]);
          //dd($profile->all());
-       $profile->save();
+       
 
        if($request){
           return back()->with('success','You have registered successfully');
