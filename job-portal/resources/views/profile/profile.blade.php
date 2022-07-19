@@ -11,15 +11,16 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
     
- <link rel="stylesheet" href="{{ asset('dropify/dropify/css/dropify.min.css')}}">
+ <link rel="stylesheet" href="{{ asset('dropify')}}/css/dropify.min.css">
+ 
   </head>
   <body>
     <div class="container" >
       <nav class="navbar navbar-expand-lg bg-light border-bottom" style="padding: 20px" >
         <div class="container">
-          <a href="#" class="navbar-brand" style="color: black"><i class="bi bi-briefcase-fill"></i>Job Portal</a>
+          <a href="#" class="navbar-brand" style="color: black" ><i class="bi bi-briefcase-fill"></i>Job Portal</a>
         <ul class="nav"  >
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black">
@@ -27,7 +28,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               
-              <li><a class="dropdown-item" href="logout">Logout</a></li>
+              <li><a class="dropdown-item" href="/">Logout</a></li>
           
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Back to previoues page</a></li>
@@ -43,7 +44,7 @@
           <p>Please Upload Your Photo</p>
 
           @else
-            <img style="width: 100%" src="{{ asset('uploads/image') }}/{{ Auth::user()->profile->avatar }}" alt="" width="100" height="300">
+            <img style="width: 100%" src="{{ asset('uploads/image') }}/{{ Auth::user()->profile->avatar }}" alt="" width="100" height="400">
         
          @endif
          
@@ -62,27 +63,27 @@
       
         <!-- Modal -->
        <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Choose Your Photo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-            <div class="modal-body">
-              <input type="file" name="avatar" id="dropify" data-height="100"/>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" value="save" class="btn btn-primary">Update</button>
-            </div>
-      </form>
-    </div>
-  </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Choose Your Photo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                            <div class="modal-body">
+                              <input type="file" name="avatar" class="dropify " data-height="200" />
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" value="save" class="btn btn-primary">Update</button>
+                            </div>
+                      </form>
+                    </div>
+                  </div>
 
-</div>
+        </div>
         
         
         <div class="col-md-4" id="with">
@@ -117,7 +118,9 @@
                           cols="30"
                           rows="3"
                           class="form-control"
+                          
                         />
+                        
                       </div>
                       <br />
                       <div class="form-group">
@@ -238,63 +241,24 @@
       </div>
     </div>
     
-    {{--  <script type="text/javascript">
-      //start of messages
-      //$(".success_message").hide();
-     /// $(".error_message").hide();
-      //end of messages
-
-      $(document).ready(function (e) {
-        $("ImageUpdate").on('click',(function(e){
-          e.preventDefault();
-          var image_file = $('#selectedImage').attr('src');
-          if(image_file != ''){
-
-            $.ajax({
-              url: "upload.php",
-              type:"POST",
-              data:{file:image_file},
-              success: function(data){
-                console.log(data);
-                if(data=='error'){
-                  console.log('error');
-                }else{
-                  $(".success_message").fadein('1000');
-                  $(".error_message").hide();
-                }
-              }
-            })
-          }
-        }))
-      })--}}
-<script>
-    //  Start Dropify
-      $(document).ready(function(){
-        $('#dropify').dropify();
-      });
-     // end of Dopifys
-</script>
-
-       {{-- function changeImage(input){
-        if(input.files && input.files[0]){
-          var reader = new FileReader();
-          reader.onload = function(e){
-            $('#selectedImage').attr('src',e.target.result);
-          };
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-    </script>--}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-     
-     <script src="dropify/dropify/js/dopify.min.js"></script>
-    
-
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{{ ('dropify') }}/js/dopify.min.js"></script>
+  <script type="text/javascript">
+    
+
+    //Start Dropify
+    $(document).ready(function(){
+      $('.dropify').dropify();
+   });
+    //end of Dopifys
+
+    
+  </script>
   
   </body>
 </html>
