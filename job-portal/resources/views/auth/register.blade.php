@@ -19,6 +19,14 @@
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+            <div class="mt-4">
+                <x-jet-label for="user_type" class=" mt-1 w-full" type="option" name="user_type" :value="old('user_type')" required value="{{ __('User Type') }}" />
+                <select name="user_type" id="" aria-label="Default select example">
+                    <option value="" name="user_type">--Select--</option>
+                    <option value="job_seeker"  >Job Seeker</option>
+                    <option value="company" >Company</option>
+                </select>
+            </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
