@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Profile;
+use App\Models\Job_Category;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -26,6 +27,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'user_type',
         'password',
     ];
 
@@ -61,5 +63,14 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasOne(related: Profile::class);
+    }
+    public function company(){
+        return $this->hasOne(related: Company::class);
+    }
+    public function jobs(){
+        return $this->hasOne(related: Job::class);
+    }
+    public function Job_Category(){
+        return $this->hasOne( Job_Category::class);
     }
 }

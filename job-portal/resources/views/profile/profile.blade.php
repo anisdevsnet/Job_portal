@@ -28,7 +28,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               
-              <li><a class="dropdown-item" href="/login">Logout</a></li>
+              <li><a class="dropdown-item" href="{{ route('home') }}">Logout</a></li>
           
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Back to previoues page</a></li>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="submit" value="save" class="btn btn-primary">Update</button>
+                              <button type="submit" value="save" class="btn btn-primary form-control">Update</button>
                             </div>
                       </form>
                     </div>
@@ -163,7 +163,7 @@
                       </div>
                       
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary" value="Save" style="margin-top: 15px">
+                        <button type="submit" class="btn btn-primary form-control" value="Save" style="margin-top: 15px">
                           Update
                         </button>
                       </div>
@@ -220,7 +220,7 @@
             <div class="card-body">
               <input type="file" name="cover_letter" class="form-control" />
               <br />
-              <button type="submit" value="Save" class="btn btn-primary">Update</button>
+              <button type="submit" value="Save" class="btn btn-primary form-control">Update</button>
             </div>
           </div>
         </form >
@@ -233,7 +233,7 @@
             <div class="card-body">
               <input type="file" name="resume" class="form-control" />
               <br />
-              <button type="submit" value="Save" class="btn btn-primary">Update</button>
+              <button type="submit" value="Save" class="btn btn-primary form-control">Update</button>
             </div>
           </div>
         </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\Job;
 use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -75,9 +77,18 @@ class RegisterController extends Controller
         Profile::create([
             'user_id'=> $user->id,
            ]);
+        $company = Company::create([
+            'user_id'=> $user->id,
+        ]);  
+        Job::create([
+            'user_id'=>$user->id,
+            'company_id'=>$company->id,
+        ]);
 
-       return $user;
+       return $user && $company;
+       
     }
+    
     /*public function logout()
     {
        session()->forget(['loginId']);

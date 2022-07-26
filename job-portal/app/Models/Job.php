@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Job extends Model
 {
     use HasFactory;
-    protected $table ='companies';
+    protected $table = 'job_categories';
     protected $fillable=[
-        
         'user_id',
-        'company_name',
+        'company_id',
+        'category',
+        'title',
         'slug',
-        'address',
-        'phone',
-        'website',
-        'logo',
-        'cover_photo',
-        'slogan',
         'description',
+        'job_position',
+        'status',
+        'type',
+        'last_date',
+        'address',
     ];
 }

@@ -12,6 +12,7 @@ class CheckController extends Controller
             return redirect()->route('login');
         }
         if(Auth::user()->user_type ==='job_seeker'){
+            
             return redirect()->route('Profile.profile');
         }
         if(Auth::user()->user_type === 'company'){

@@ -18,8 +18,8 @@ class Profile extends Model
         'dob',
         'experience',
         'bio',
-        'cover_letter',
-        'resume',
+        'logo',
+        'website',
         'avatar',
         
 

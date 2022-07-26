@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->id('company_id');
+            $table->id('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('company_name');
-            $table->string('slug');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('website');
-            $table->string('logo');
-            $table->string('cover_photo');
-            $table->string('slogan');
-            $table->string('description');
+            $table->string('company_name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('website')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('cover_photo')->nullable();
+            $table->string('slogan')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

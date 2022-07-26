@@ -14,21 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id('job_id');
-            $table->unsignedBigInteger('user_id');
+            $table->id('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('company_id')->on('companies');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('job_categories');
-            $table->string('title');
-            $table->string('slug');
-            $table->string('description');
-            $table->string('job_position');
-            $table->string('status');
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->string('category')->nullable();
+            //$table->foreign('category_id')->references('category_id')->on('job_categories');
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('description')->nullable();
+            $table->string('job_position')->nullable();
+            $table->string('status')->nullable();
             $table->string('type')->nullable();
-            $table->date('last_date');
-            $table->string('address');
+            $table->date('last_date')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
