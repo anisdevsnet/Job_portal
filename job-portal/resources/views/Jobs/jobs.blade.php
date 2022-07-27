@@ -58,8 +58,7 @@
 
                         <div class="form-group">
                             <label for="descriptio" style="margin-bottom: 5px"
-                            >Description</label
-                            >
+>Description</label>
 
                             <textarea
                             name="description"
@@ -87,8 +86,11 @@
                             aria-label="Default select example"
                             name="category"
                             >
-                            <option value="">
-                              
+                            <option value=""> Select Categories</option>
+                            {{--  @foreach ($job_category as $job_category)
+                            <option value="">{{ $job_category->name }}</option>    
+                            @endforeach--}}
+                           
 
                             </select>
                           </div>
@@ -171,11 +173,11 @@
                                               <input type="text" class="form-control" name="name">
                                               
                                               <button class="btn btn-primary form-control" style="margin-top:15px">Submit</button>
-                                          </form>      
+                                             </form>      
                                       </div>
                                   </div>
 
-                                  <div>
+                                <div>
                                     <table class="table">
                                       <thead>
                                         <tr>
@@ -194,8 +196,8 @@
                                       </tbody>
                                     </table>
                                     
-                                  </div>
-                                    {{--   <a href="{{ route('Jobs.index') }}" class="btn btn-primary form-control" >List</a>--}}                             
+                                  </div> 
+                                      {{--  <a href="{{ route('Jobs.index') }}" class="btn btn-primary form-control" >List</a> --}}                          
                              </div>
                           </div>
                           <div class="modal-footer">

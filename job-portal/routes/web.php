@@ -80,6 +80,7 @@ Route::get('jobs/list',[JobController::class,'list'])->name('jobs.list');
 Route::get('categories/index',[Job_CategoryController::class,'index'])->name('Jobs.index');
 Route::post('categories/category',[Job_CategoryController::class,'category'])->name('job.category');
 Route::delete('categories/delete/{category_id}',[Job_CategoryController::class,'destroy'])->name('Jobs.delete');
+//Route::get('categories/list',[Job_CategoryController::class,'list'])->name('Jobs.list');
 
 //Job_Category End
 

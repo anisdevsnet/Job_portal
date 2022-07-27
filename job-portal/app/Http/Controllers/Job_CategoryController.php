@@ -12,11 +12,13 @@ class Job_CategoryController extends Controller
     public function index()
     {
         $job_category = Job_Category::all();
+        //$job_category['job_categories']=DB::table('job_categories')->orderBy('name','asc')->get();
+        //return view('Jobs.cateagory',compact('job_category'));
         //return dd($job_category);
         //return DB::select("select * From job_categories");
-        return view('Jobs.jobs',compact('job_category'));
         
-       // return view ('Jobs.jobs',['job_category'=>$job_category]);
+        //return view('Jobs.cateagory',$job_category);
+        return view ('Jobs.jobs',['job_category'=>$job_category]);
     }
     public function category(Request $req)
     {
@@ -32,4 +34,9 @@ class Job_CategoryController extends Controller
         Job_Category::destroy($category_id);
         return redirect()->back->with('flash_message', 'Category deleted!');  
     }
+    /*public function list()
+    {
+        $list['job_categories']=DB::table('job_categories')->get();
+        return view ('Jobs.cateagory',compact('list'));
+    }*/
 }
