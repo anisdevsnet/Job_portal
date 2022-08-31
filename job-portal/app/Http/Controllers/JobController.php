@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Http\Controllers\Job_CategoryController;
+use App\Models\Company;
 use App\Models\Job_Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,17 +14,38 @@ class JobController extends Controller
     //
     public function index()
     {
-        return view('Jobs.jobs');
+        $categories =  Job_Category::get();
+        
+        $companies = Company::select('id','company_name')->where('user_id','=', Auth::user()?->id)->get();
+        return view('Jobs.jobs',compact('categories','companies'));
+        
+        
+
+        
     }
     public function list()
     {
-        $job = Job::all();
-        return view ('Company.joblist',['jobs'=>$job]);
+        $jobs = Job::where('user_id','=',Auth::user()?->id)->get();
+        return view ('Company.joblist',compact('jobs'));
     }
     public function store(Request $req)
     {
-        $job= Job::where('user_id','=', Auth::user()?->id )->first();
+
+        $req -> validate([
+            'title' => 'required||min:5|max:255',
+            'address' => 'required||min:6|max:255',
+            'description' => 'required|min:5|max:255',
+            'job_position' => 'required',
+            'category' => 'required',
+            'slug' => 'required|min:5|max:255',
+            'type' => 'required',
+            'status'=> 'required',
+            'last_date' => 'required'
+        ]);
         
+        $job = new Job();
+        $job-> user_id = Auth::user()->id;
+        $job->company_id = $req ->company_id;      
         $job-> title = $req -> title;
         $job->address = $req -> address;
         $job-> description = $req -> description;
@@ -38,6 +60,7 @@ class JobController extends Controller
     //End
         return redirect()->back()->with('message','Your Information Updated Successfully');
     }
+    
     
     
 }

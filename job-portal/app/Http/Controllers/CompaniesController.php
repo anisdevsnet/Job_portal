@@ -18,7 +18,15 @@ class CompaniesController extends Controller
    
     public function store(Request $request)
     {
-
+        $request->validate([
+            'company_name' => 'required|min:2|max:255',
+            'slug' =>'required|min:2|max:255',
+            'address' => 'required|min:2|max:255',
+            'phone'=>'required|integer|min:0|max:10000',
+            'website' => 'required',
+            'slogan' => 'required',
+            'description' => 'required'
+        ]);
     // Start
       $company = Company::where('user_id','=', Auth::user()?->id )->first();
       $company->company_name = $request->company_name ?? '';

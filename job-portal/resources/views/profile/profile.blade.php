@@ -1,3 +1,8 @@
+
+        
+   
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,10 +33,19 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               
-              <li><a class="dropdown-item" href="{{ route('home') }}">Logout</a></li>
+              <li><a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                 {{ __('Logout') }}
+             </a>
+
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                 @csrf
+             </form>      
+            </li>
           
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Back to previoues page</a></li>
+              <li><a class="dropdown-item" href="{{ route('joblist') }}">All Jobs</a></li>
             </ul>
           </li>
         </ul>
@@ -73,7 +87,8 @@
                       <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="modal-body">
-                              <input type="file" name="avatar" class="dropify " data-height="200" />
+                              <input type="file" name="avatar" class="dropify " data-height="200" value="{{ old('class') }}"
+                              required />
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -96,7 +111,8 @@
                   
                         <div class="form-group">
                         <label for="" style="margin-bottom: 5px">Date of birth</label>
-                        <input type="date" name="dob" class="form-control" />
+                        <input type="date" name="dob" class="form-control" value="{{ old('class') }}"
+                        required />
                         
                       </div>
                       <br />
@@ -104,8 +120,8 @@
                       <div class="form-group" style="display: flex">
                         <label for="gender" style="margin-right: 10px" >Gender:</label>
                         <div class="col-md-6" style="margin-left:10px">
-                          <input type="radio" name="gender" value="male" >Male
-                          <input type="radio" name="gender" value="female" >Female
+                          <input type="radio" name="gender" value="male" required >Male
+                          <input type="radio" name="gender" value="female"  required>Female
                         </div>
                       </div>
                       <br />
@@ -117,7 +133,9 @@
                           id="address"
                           cols="30"
                           rows="3"
-                          class="form-control"
+                          class="form-control" 
+                          value="{{ old('class') }}"
+                          required
                           
                         />
                         
@@ -126,7 +144,8 @@
                       <div class="form-group">
                         <label for="" style="margin-bottom: 5px">Phone Number</label>
                         <br />
-                        <input type="text" name="phone_number" class="form-control" />
+                        <input type="text" name="phone_number" class="form-control" value="{{ old('class') }}"
+                        required />
                       </div>
                       <br />
                       <div class="form-group">
@@ -139,6 +158,8 @@
                           cols="30"
                           rows="3"
                           class="form-control"
+                          value="{{ old('class') }}"
+                          required
                         />
                       </div>
                       <div class="form-group">
@@ -149,6 +170,8 @@
                           name="experience"
                           placeholder="Fresher or years of experience?"
                           class="form-control"
+                          value="{{ old('class') }}"
+                          required
                         />
                       </div>
                       <div class="form-group">
@@ -158,7 +181,9 @@
                           type="text"
                           name="bio"
                           placeholder="write your bio"
-                          class="form-control"
+                          class="form-control" 
+                          value="{{ old('class') }}"
+                          required
                         />
                       </div>
                       
@@ -262,3 +287,4 @@
   
   </body>
 </html>
+

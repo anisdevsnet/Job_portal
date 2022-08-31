@@ -83,6 +83,9 @@
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
+                        <th scope="col">Title</th>
+                        
+                        <th scope="col">Status</th>
                         <th scope="col">Category</th>
                         <th scope="col">Position</th>
                         <th scope="col">Address</th>
@@ -94,11 +97,15 @@
                     <tbody>
                         @foreach ($jobs as $job )                                                     
                         <tr>
-                            <td>{{ $job ->id }}</td>
+                            <td>{{ $job->id }}</td>
+                            <td>{{ $job->title}}</td>
+                            
+                            
+                            <td>{{ $job->status }}</td>
                             <td>{{ $job->category }}</td>
-                            <td>{{ $job ->job_position }}</td>
-                            <td>{{ $job ->address}}</td>
-                            <td>{{ $job ->type }}</td>
+                            <td>{{ $job->job_position }}</td>
+                            <td>{{ $job->address}}</td>
+                            <td>{{ $job->type }}</td>
                             <td>{{ $job->last_date }}</td>
                             <td>                          
                             <button class="btn btn-primary">Apply</button>  

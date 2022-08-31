@@ -21,7 +21,7 @@ use App\Models\Job_Category;
 | contains the "web" middleware group. Now create something great!
 |
 */  
-/*Route::get('/',function(){
+Route::get('/',function(){
     return view ('welcome')->name('logout');
 });
 /*
@@ -77,12 +77,20 @@ Route::get('jobs/list',[JobController::class,'list'])->name('jobs.list');
 
 //Job_Category Start
 
-Route::get('categories/index',[Job_CategoryController::class,'index'])->name('Jobs.index');
-Route::post('categories/category',[Job_CategoryController::class,'category'])->name('job.category');
-Route::delete('categories/delete/{category_id}',[Job_CategoryController::class,'destroy'])->name('Jobs.delete');
+Route::get('categories',[Job_CategoryController::class,'index']);
+Route::get('categories/getData',[Job_CategoryController::class,'getData']);
+Route::post('categories/category',[Job_CategoryController::class,'category']);
+Route::post('categories/update',[Job_CategoryController::class,'postUpdate']);
+Route::delete('categories/delete/{id}',[Job_CategoryController::class,'postDelete'])->name('category.delete.id');
+
+
 //Route::get('categories/list',[Job_CategoryController::class,'list'])->name('Jobs.list');
 
 //Job_Category End
+
+//All job route Start
+Route::get('joblist',[ProfileController::class,'joblist'])->name('joblist');
+//All job route End
 
 
 Auth::routes();

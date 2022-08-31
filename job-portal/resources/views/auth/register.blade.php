@@ -1,5 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <x-guest-layout>
+    
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -19,14 +20,18 @@
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-            <div class="mt-4">
+
+            
+                
+           
+         <div class="mt-4">
                 <x-jet-label for="user_type" class=" mt-1 w-full" type="option" name="user_type" :value="old('user_type')" required value="{{ __('User Type') }}" />
                 <select name="user_type" id="" aria-label="Default select example">
                     <option value="" name="user_type">--Select--</option>
                     <option value="job_seeker"  >Job Seeker</option>
                     <option value="company" >Company</option>
                 </select>
-            </div>
+            </div>  
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />

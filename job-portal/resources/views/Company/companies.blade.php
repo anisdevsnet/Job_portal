@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,7 +29,17 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               
-              <li><a class="dropdown-item" href="{{ route('home') }}">Logout</a></li>                    
+              <li><a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                 {{ __('Logout') }}
+             </a>
+
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                 @csrf
+             </form>      
+            </li>
+                              
             </ul>
           </li>
         </ul>
@@ -70,7 +81,8 @@
                       <form action="{{ route('companies.logo') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="modal-body">
-                              <input type="file" name="logo" class="dropify " data-height="200" />
+                              <input type="file" name="logo" class="dropify " data-height="200" value="{{ old('class') }}"
+                              required />
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -93,7 +105,8 @@
                   
                         <div class="form-group">
                         <label for="" style="margin-bottom: 5px">Company Name</label>
-                        <input type="text" name="company_name" class="form-control" />
+                        <input type="text" name="company_name" class="form-control"  value="{{ old('class') }}"
+                        required/>
                         
                       </div>
                       <br />
@@ -101,7 +114,8 @@
                       <div class="form-group">
                         <label for="" style="margin-bottom: 5px">Slug</label>
                         <br />
-                        <input type="text" name="slug" class="form-control" />
+                        <input type="text" name="slug" class="form-control"  value="{{ old('class') }}"
+                        required/>
                       </div>
                       <br />
                       <div class="form-group">
@@ -112,7 +126,9 @@
                           id="address"
                           cols="30"
                           rows="3"
-                          class="form-control"
+                          class="form-control"  
+                          value="{{ old('class') }}"
+                                required
                           
                         />
                         
@@ -124,7 +140,9 @@
                         <input
                           name="phone"
                           id="phone"
-                          class="form-control"
+                          class="form-control" 
+                          value="{{ old('class') }}"
+                                required
                           
                         />
                         
@@ -137,6 +155,8 @@
                         type="text"
                           name="website"
                           class="form-control"
+                          value="{{ old('class') }}"
+                                required
                         />
                       </div>
                       <div class="form-group">
@@ -146,6 +166,8 @@
                           type="text"
                           name="slogan"
                           class="form-control"
+                          value="{{ old('class') }}"
+                                required
                         />
                       </div>
                       <div class="form-group">
@@ -155,6 +177,8 @@
                           type="text"
                           name="description"
                           class="form-control"
+                          value="{{ old('class') }}"
+                                required
                         />
                       </div>
                       

@@ -93,7 +93,11 @@ class ProfileController extends Controller
 
       
         return redirect()->back()->
-        with('message','Your Resume update Successfully');
+        with('message','Your Photo update Successfully');
+    }
+    public function joblist()
+    {
+        return('hello');
     }
 
 }
